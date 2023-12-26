@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Ваш профиль, {{ user.username }}</h1><br>
+
+        <h3>Личные данные: </h3>
+        <p><strong>Фамилия: </strong>{{ user.last_name }}</p>
+        <p><strong>Имя: </strong>{{ user.first_name }}</p>
+        <p><strong>Логин: </strong>{{ user.username }}</p>
+        <p><strong>Email: </strong>{{ user.email }}</p>
+        <p><strong>Фото пользователя: </strong></p>
+        <p><img src="{{ user.photo.url }}" alt="Фото пользователя" style="width: 200px;"></p><br><br>
+
+
+        <h3>Заказы пользователя:</h3>
+        {% if orders %}
+            {% for order in orders %}
+                <p>Название: {{order.product.name}}</p>
+                <p>Описание: {{order.product.information}}</p>
+                <p>Фото: <img class="img" src="/media/{{order.product.tovar_photo}}" style="width: 200px;"></p>
+                <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+            {% endfor %}
+        {% else %}
+            <p>У пользователя нет заказов!</p>
+        {% endif %}
+    {% else %}
+        <p>Вы не можете просмотреть профиль, так как вы не вошли на сайт!</p>
+    {% endif %}
+{% endblock %}
+
+
+
+
+

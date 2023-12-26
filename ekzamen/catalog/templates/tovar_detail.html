@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Подробная информация по товару/услуге</h1>
+
+  <p><strong>Название:</strong> {{ product.name }}</p>
+  <p><strong>Описание:</strong> {{ product.information }}</p>
+  <p><strong>Фотография:</strong> <img style="max-width:200px; max-height:200px;" src="{{ product.tovar_photo.url }}"></p>
+
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Заказать товар">
+  </form>
+{% endblock %}

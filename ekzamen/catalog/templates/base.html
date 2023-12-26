@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+      <title>Главная страница</title>
+    {% endblock %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="parent">
+        <div>
+          {% block sidebar %}
+          <ul class="sidebar-nav">
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'service' %}">Товары/услуги</a></li>
+            <li><a href="{% url 'profile'%}">Профиль</a></li>
+            <li><a href="{% url 'login'%}">Авторизация</a></li>
+            <li><a href="{% url 'logout' %}">Выход</a></li>
+            <li><a href="{% url 'register'%}">Регистрация</a></li>
+          </ul>
+          {% endblock %}
+      </div>
+      <div>{% block content %}{% endblock %}</div>
+    </div>
+  </body>
+</html>

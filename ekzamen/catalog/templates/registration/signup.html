@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <h1>Регистрация</h1>
+  {% if user.is_authenticated %}
+    <p>Вы не можете зарегистрироваться, так как вы уже авторизованы в системе!</p>
+    <p>Вам необходимо выйти из системы, чтобы зарегистрироваться!</p>
+  {% else %}
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Зарегистрироваться</button>
+    </form>
+  {% endif %}
+{% endblock %}
